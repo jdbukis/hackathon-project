@@ -103,14 +103,19 @@ async function showPath() {
     isShowingPath = true;
     statusMsg.innerText = "Watch carefully...";
 
-    // Flash each tile in sequence
-    for (const index of gamePath) {
-        await new Promise(r => setTimeout(r, 400));
+    // 1. Light up all tiles in the path at once
+    gamePath.forEach(index => {
         tiles[index].classList.add('active');
+    });
 
-        await new Promise(r => setTimeout(r, 400));
+    // 2. Wait for a set amount of time (e.g., 2000ms = 2 seconds)
+    const displayTime = 2000; 
+    await new Promise(r => setTimeout(r, displayTime));
+
+    // 3. Turn them all off at once
+    gamePath.forEach(index => {
         tiles[index].classList.remove('active');
-    }
+    });
 
     isShowingPath = false;
     statusMsg.innerText = "Your turn!";
