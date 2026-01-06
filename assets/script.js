@@ -20,7 +20,11 @@ let gamePath = [];          // Stores the correct path the user must memorize
 let userPath = [];          // Stores the user's input path
 let tiles = [];             // Holds references to all grid tiles
 let isShowingPath = false;  // True while the path animation is playing
-let isInputEnabled = false; // Controls when user clicks are allowed
+let isPlayerTurn = false;   // True when it is specifically the user's turn to play
+
+// Timer variables
+let secondsElapsed = 0;
+let timerInterval = null;
 
 // ===============================
 // Grid creation
@@ -90,11 +94,32 @@ function getValidNeighbors(index) {
 }
 
 // ===============================
+// Timer Logic
+// ===============================
+function startTimer() {
+    stopTimer(); // Ensure no duplicate timers
+    secondsElapsed = 0;
+    timerInterval = setInterval(() => {
+        secondsElapsed++;
+        // Optional: Update a UI timer element here if desired
+    }, 1000);
+}
+
+function stopTimer() {
+    if (timerInterval) {
+        clearInterval(timerInterval);
+        timerInterval = null;
+    }
+}
+
+// ===============================
 // Game start logic
 // ===============================
 async function startGame() {
-    // Reset user progress
+    // Reset user progress and timer
+    stopTimer();
     userPath = [];
+    isPlayerTurn = false;
 
     // Clear any previous visual states
     tiles.forEach(t => t.classList.remove('active', 'wrong'));
@@ -112,7 +137,7 @@ async function startGame() {
 // ===============================
 async function showPathToMemorise() {
     isShowingPath = true;
-    isInputEnabled = false; // Prevent user input during animation
+    isPlayerTurn = false; // Ensure player cannot click during animation
     statusMsg.innerText = "Memorize the sequence...";
 
     // Highlight each tile in sequence with a staggered delay
@@ -128,21 +153,22 @@ async function showPathToMemorise() {
     // Pause execution until the path display finishes
     await new Promise(resolve => setTimeout(resolve, totalWaitTime));
 
-    // Remove all highlights after display ends
+    // Remove all highlights after display ends (Reset to neutral state)
     gamePath.forEach(index => tiles[index].classList.remove('active'));
 
-    // Enable user interaction
+    // Enable user interaction and start timer
     isShowingPath = false;
-    isInputEnabled = true;
-    statusMsg.innerText = "Your turn! Replicate the sequence.";
+    isPlayerTurn = true;
+    statusMsg.innerText = "Your turn! Time is ticking...";
+    startTimer();
 }
 
 // ===============================
 // User input handling
 // ===============================
 function handleTileClick(index) {
-    // Ignore clicks if input is disabled or path is still showing
-    if (!isInputEnabled || isShowingPath) return;
+    // Ignore clicks if it's not the player's turn or path is showing
+    if (!isPlayerTurn || isShowingPath) return;
 
     // Determine the expected tile for the current step
     const expectedIndex = gamePath[userPath.length];
@@ -154,14 +180,16 @@ function handleTileClick(index) {
 
         // Check if user has completed the entire sequence
         if (userPath.length === gamePath.length) {
-            statusMsg.innerText = "Perfect! Level Complete.";
-            isInputEnabled = false;
+            stopTimer();
+            statusMsg.innerText = `Perfect! Finished in ${secondsElapsed} seconds.`;
+            isPlayerTurn = false;
         }
     } else {
         // Incorrect selection
+        stopTimer();
         tiles[index].classList.add('wrong');
         statusMsg.innerText = "Incorrect! Press Start to try again.";
-        isInputEnabled = false;
+        isPlayerTurn = false;
     }
 }
 
