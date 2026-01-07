@@ -13,6 +13,13 @@ const grid = document.getElementById("grid");
 const startBtn = document.getElementById("start-btn");
 const resetBtn = document.getElementById("reset-btn"); // Reference for Reset Button
 const statusMsg = document.getElementById("status-message");
+const grid = document.getElementById('grid');
+const startBtn = document.getElementById('start-btn');
+const resetBtn = document.getElementById('reset-btn'); // Reference for Reset Button
+const statusMsg = document.getElementById('status-message');
+const modal = document.getElementById("instructions-modal");
+const instBtn = document.getElementById("instructions-btn");
+const closeBtn = document.querySelector(".close-btn");
 
 // ===============================
 // Game state variables
@@ -212,6 +219,15 @@ function resetAttempt() {
 
   // Restart the timer for the new attempt
   startTimer();
+}
+
+// ===============================
+// Modal Logic
+// ===============================
+instBtn.onclick = () => modal.style.display = "block";
+closeBtn.onclick = () => modal.style.display = "none";
+window.onclick = (event) => {
+    if (event.target == modal) modal.style.display = "none";
 }
 
 // ===============================

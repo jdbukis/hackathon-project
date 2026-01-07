@@ -1,11 +1,12 @@
 /* Color theme variables */
 :root {
-  --bg-color: #1a1a2e;
-  --tile-color: #16213e;
+  --bg-color: #ffffff;
+  --wireframe-blue: #2e31ff;
+  --tile-color: #f0f0f0;
   --highlight-color: #4ecca3;
   --error-color: #e94560;
-  --text-color: #eeeeee;
-  --panel-bg: #0f3460;
+  --text-color: #333333;
+  --panel-bg: #e0e0e0;
 }
 
 /* Global page styling */
@@ -15,58 +16,61 @@ body {
   color: var(--text-color);
   display: flex;
   flex-direction: column;
-  align-items: center;
-  padding: 20px;
+  min-height: 100vh;
   margin: 0;
 }
 
-h1 {
-  margin-bottom: 5px;
+/* Header & Footer styling */
+.site-header, .site-footer {
+  background-color: var(--wireframe-blue);
+  color: white;
+  padding: 20px;
+  text-align: center;
 }
 
-/* Layout wrapper for grid + control panel */
-.game-container {
+/* Layout wrapper for vertical stack */
+.main-content {
+  flex: 1;
   display: flex;
-  gap: 30px;
-  margin-top: 20px;
-  flex-wrap: wrap; /* Allows stacking on small screens */
-  justify-content: center;
-  max-width: 1200px;
+  flex-direction: column;
+  align-items: center;
+  padding: 20px;
+  gap: 20px;
+}
+
+/* Game Area Wrapper */
+.game-area-wrapper {
+  background: var(--panel-bg);
+  padding: 15px;
+  border: 2px solid #000;
+  border-radius: 4px;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
 }
 
 /* 12x12 grid container */
 #grid {
   display: grid;
-  grid-template-columns: repeat(12, 40px);
-  grid-template-rows: repeat(12, 40px);
-  gap: 5px;
-  background: var(--panel-bg);
-  padding: 15px;
-  border-radius: 8px;
-  box-shadow: 0 10px 30px rgba(0, 0, 0, 0.5);
+  grid-template-columns: repeat(12, 30px);
+  grid-template-rows: repeat(12, 30px);
+  gap: 3px;
 }
 
 /* Individual grid tiles */
 .tile {
-  width: 40px;
-  height: 40px;
-  background-color: var(--tile-color);
-  border-radius: 3px;
+  width: 30px;
+  height: 30px;
+  background-color: white;
+  border: 1px solid #ccc;
   cursor: pointer;
   transition: background-color 0.2s, transform 0.1s;
 }
 
-/* Hover effect for tiles */
-.tile:hover {
-  background-color: #24345d;
-}
-
-/* Tile lights up when part of the shown path or correct click */
+/* Tile lights up when part of the shown path */
 .tile.active {
     background-color: var(--highlight-color);
-    box-shadow: 0 0 15px var(--highlight-color);
-    transform: scale(0.95);
-    transition: all 0.2s ease-in;
+    box-shadow: 0 0 10px var(--highlight-color);
     animation: pulse 0.5s ease-in-out;
 }
 
@@ -76,69 +80,51 @@ h1 {
     100% { transform: scale(1); }
 }
 
-/* Tile turns red when clicked incorrectly */
 .tile.wrong {
   background-color: var(--error-color);
 }
 
-/* Right-side control panel */
-.controls {
-  background: var(--panel-bg);
-  padding: 25px;
-  border-radius: 8px;
-  width: 280px;
-  height: fit-content;
-}
-
-/* Spacing for each setting group */
-.setting-group {
-  margin-bottom: 20px;
-}
-
-/* Label styling */
-label {
-  display: block;
-  margin-bottom: 8px;
-  font-size: 0.9rem;
-  color: #999;
-}
-
-/* Dropdown and slider styling */
-select,
-input[type="range"] {
-  width: 100%;
-  margin-top: 5px;
-}
-
-/* Start button styling */
-button {
-  width: 100%;
-  padding: 12px;
-  background-color: var(--highlight-color);
+/* Wireframe Button Style */
+.blue-btn {
+  background-color: var(--wireframe-blue);
+  color: white;
   border: none;
-  border-radius: 4px;
-  color: var(--bg-color);
+  padding: 12px 25px;
   font-weight: bold;
-  font-size: 1rem;
   cursor: pointer;
-  transition: transform 0.2s;
+  min-width: 140px;
 }
 
-/* Button hover animation */
-button:hover {
-  transform: translateY(-2px);
-  filter: brightness(1.1);
+.bottom-controls {
+  display: flex;
+  gap: 20px;
 }
 
-/* Button press animation */
-button:active {
-  transform: translateY(0);
+/* Modal Styling */
+.modal {
+    display: none;
+    position: fixed;
+    z-index: 1000;
+    left: 0; top: 0; width: 100%; height: 100%;
+    background-color: rgba(0,0,0,0.5);
+}
+.modal-content {
+    background-color: white;
+    margin: 15% auto;
+    padding: 20px;
+    width: 300px;
+    border-radius: 8px;
+    position: relative;
+}
+.close-btn {
+    position: absolute;
+    right: 15px; top: 10px;
+    font-size: 24px;
+    cursor: pointer;
 }
 
-/* Ensure disabled state is visually clear */
-#grid.disabled .tile {
-    cursor: not-allowed;
-    pointer-events: none;
+/* Settings drawer styling */
+.settings-drawer {
+    margin-top: 20px;
+    width: 280px;
 }
-
-/* hamza form test */

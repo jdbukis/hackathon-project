@@ -2,36 +2,35 @@
 <html lang="en">
 <head>
     <meta charset="UTF-8">
-    <!-- Ensures proper scaling on mobile devices -->
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
 
     <title>Path Memory Game - 12x12</title>
 
-    <!-- Link to external CSS file -->
     <link rel="stylesheet" href="assets/style.css">
 </head>
 <body>
 
-    <!-- Main title -->
-    <h1>Memory Path</h1>
-    <p>Watch the path, then repeat the sequence.</p>
+    <header class="site-header">
+        <h1>Memory Path</h1>
+    </header>
 
-    <div class="game-container">
+    <main class="main-content">
+        <button id="instructions-btn" class="blue-btn">Instructions</button>
         
-        <!-- The 12x12 grid will be generated here by JavaScript -->
-        <div id="grid"></div>
+        <p>Watch the path, then repeat the sequence.</p>
 
-        <!-- Right-side control panel -->
-        <div class="controls">
-        <button id="start-btn">Start Game</button>
-    
-        <button id="reset-btn" style="margin-top: 10px; background-color: var(--tile-color); color: white;">Reset Attempt</button>
-    
-        <div id="status-message" style="margin-top: 20px; text-align: center; color: var(--highlight-color);">
+        <div class="game-area-wrapper">
+            <div id="grid"></div>
+
+            <div id="status-message"></div>
         </div>
-</div>
 
-            <!-- Game mode selection -->
+        <div class="bottom-controls">
+            <button id="start-btn" class="blue-btn">Start Game</button>
+            <button id="reset-btn" class="blue-btn">Reset Attempt</button>
+        </div>
+
+        <div class="settings-drawer">
             <div class="setting-group">
                 <label for="mode">Game Mode</label>
                 <select id="mode">
@@ -40,19 +39,28 @@
                 </select>
             </div>
             
-            <!-- Slider to choose path length -->
             <div class="setting-group">
                 <label>Path Length: <span id="diff-val">8</span> steps</label>
                 <input type="range" id="length" min="3" max="25" value="8">
             </div>
-            
-            <!-- Status messages (e.g., "Your turn!", "Game Over") -->
-            <div id="status-message" style="margin-top: 20px; text-align: center; color: var(--highlight-color);">
-            </div>
+        </div>
+    </main>
+
+    <footer class="site-footer">
+        <p>Footer</p>
+    </footer>
+
+    <div id="instructions-modal" class="modal">
+        <div class="modal-content">
+            <span class="close-btn">&times;</span>
+            <h2>How to Play</h2>
+            <p>1. Click <strong>Start Game</strong> to begin.</p>
+            <p>2. Watch the path light up on the grid.</p>
+            <p>3. Repeat the sequence by clicking the tiles in order.</p>
+            <p>4. If you make a mistake, use <strong>Reset Attempt</strong>.</p>
         </div>
     </div>
 
-    <!-- Link to JavaScript logic -->
     <script src="assets/script.js"></script>
 </body>
 </html>
