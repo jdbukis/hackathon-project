@@ -229,11 +229,11 @@ function resetAttempt() {
 // ===============================
 // Modal Logic & UI Listeners
 // ===============================
-instBtn.onclick = () => modal.style.display = "block";
-closeBtn.onclick = () => modal.style.display = "none";
+instBtn.onclick = () => (modal.style.display = "block");
+closeBtn.onclick = () => (modal.style.display = "none");
 window.onclick = (event) => {
-    if (event.target == modal) modal.style.display = "none";
-}
+  if (event.target == modal) modal.style.display = "none";
+};
 
 // Update the path length number when slider moves
 lengthInput.addEventListener('input', (e) => {

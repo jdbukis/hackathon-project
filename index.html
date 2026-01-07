@@ -1,5 +1,6 @@
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
@@ -8,6 +9,7 @@
 
     <link rel="stylesheet" href="assets/style.css">
 </head>
+
 <body>
 
     <header class="site-header">
@@ -16,7 +18,7 @@
 
     <main class="main-content">
         <button id="instructions-btn" class="blue-btn">Instructions</button>
-        
+
         <p>Watch the path, then repeat the sequence.</p>
 
         <div class="game-area-wrapper">
@@ -38,7 +40,7 @@
                     <option value="set">Set Pattern (Level 1)</option>
                 </select>
             </div>
-            
+
             <div class="setting-group">
                 <label>Path Length: <span id="diff-val">8</span> steps</label>
                 <input type="range" id="length" min="3" max="25" value="8">
@@ -47,7 +49,12 @@
     </main>
 
     <footer class="site-footer">
-        <p>Memory Path Game</p>
+        <p class="github-icon"><i class="fa-brands fa-github"></i></p>
+        <a href="https://github.com/steff657" target="_blank">Steffan</a>
+        <a href="https://github.com/hamza-m1" target="_blank">Hamza</a>
+        <a href="https://github.com/leilacsak" target="_blank">Leila</a>
+        <a href="https://github.com/jdbukis" target="_blank">Josh</a>
+        <a href="https://github.com/gustlik1444-ux" target="_blank">Michal</a>
     </footer>
 
     <div id="instructions-modal" class="modal">
@@ -61,6 +68,8 @@
         </div>
     </div>
 
+    <script src="https://kit.fontawesome.com/4c4ec3a892.js" crossorigin="anonymous"></script>
     <script src="assets/script.js"></script>
 </body>
+
 </html>

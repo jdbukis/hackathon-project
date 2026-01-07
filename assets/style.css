@@ -21,11 +21,26 @@ body {
 }
 
 /* Header & Footer styling */
-.site-header, .site-footer {
+.site-header,
+.site-footer {
   background-color: var(--wireframe-blue);
   color: white;
   padding: 20px;
   text-align: center;
+}
+
+.site-footer {
+  padding: 5px;
+}
+
+.github-icon {
+  font-size: 2rem;
+  margin: 15px;
+}
+
+.site-footer a {
+  color: white;
+  margin: 0px 10px;
 }
 
 /* Layout wrapper for vertical stack */
@@ -70,15 +85,21 @@ body {
 
 /* Tile lights up when part of the shown path */
 .tile.active {
-    background-color: var(--highlight-color);
-    box-shadow: 0 0 10px var(--highlight-color);
-    animation: pulse 0.5s ease-in-out;
+  background-color: var(--highlight-color);
+  box-shadow: 0 0 10px var(--highlight-color);
+  animation: pulse 0.5s ease-in-out;
 }
 
 @keyframes pulse {
-    0% { transform: scale(1); }
-    50% { transform: scale(1.1); }
-    100% { transform: scale(1); }
+  0% {
+    transform: scale(1);
+  }
+  50% {
+    transform: scale(1.1);
+  }
+  100% {
+    transform: scale(1);
+  }
 }
 
 .tile.wrong {
@@ -103,34 +124,39 @@ body {
 
 /* Modal Styling */
 .modal {
-    display: none;
-    position: fixed;
-    z-index: 1000;
-    left: 0; top: 0; width: 100%; height: 100%;
-    background-color: rgba(0,0,0,0.5);
+  display: none;
+  position: fixed;
+  z-index: 1000;
+  left: 0;
+  top: 0;
+  width: 100%;
+  height: 100%;
+  background-color: rgba(0, 0, 0, 0.5);
 }
 .modal-content {
-    background-color: white;
-    margin: 15% auto;
-    padding: 20px;
-    width: 300px;
-    border-radius: 8px;
-    position: relative;
+  background-color: white;
+  margin: 15% auto;
+  padding: 20px;
+  width: 300px;
+  border-radius: 8px;
+  position: relative;
 }
 .close-btn {
-    position: absolute;
-    right: 15px; top: 10px;
-    font-size: 24px;
-    cursor: pointer;
+  position: absolute;
+  right: 15px;
+  top: 10px;
+  font-size: 24px;
+  cursor: pointer;
 }
 
 /* Settings drawer styling */
 .settings-drawer {
-    margin-top: 20px;
-    width: 280px;
+  margin-top: 20px;
+  width: 280px;
 }
+
 .setting-group {
-    margin-bottom: 10px;
-    display: flex;
-    flex-direction: column;
+  margin-bottom: 10px;
+  display: flex;
+  flex-direction: column;
 }
